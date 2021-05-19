@@ -1,0 +1,6 @@
+def solution(array, commands):
+    answer = []
+    
+    for i,j,k in commands:
+        answer.append(sorted(array[i-1:j])[k-1]) #array[i-1:j] -> array 배열에서 i-1인덱스부터 j미만까지 배열자르기
+    return answer

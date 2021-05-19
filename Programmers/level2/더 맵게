@@ -1,0 +1,16 @@
+def solution(scoville, K):
+    import heapq
+    scoville.sort()
+    answer = 0
+    heap = []
+    for i in scoville:
+        heapq.heappush(heap, i)
+
+    while heap[0] < K:
+        if len(heap) == 1:
+            answer = -1
+            break
+        heapq.heappush(heap, heapq.heappop(heap) + (2 * heapq.heappop(heap)))
+        answer += 1
+
+    return answer

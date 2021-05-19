@@ -1,0 +1,43 @@
+def intersection(str1arr, str2arr):
+    str1 = [i for i in str1arr]
+    str2 = [i for i in str2arr]
+    li = []
+    for i in str1:
+        if i in str2:
+            li.append(i)
+            str1[str1.index(i)] = '-'
+            str2[str2.index(i)] = '-'
+    return li
+def union(str1arr, str2arr):
+    str1 = [i for i in str1arr]
+    str2 = [i for i in str2arr]
+    li = [i for i in str1arr]
+    for i in str2:
+        if i in str1:
+            str2[str2.index(i)] = '-'
+            str1[str1.index(i)] = '-'
+        else:
+            li.append(i)
+            str2[str2.index(i)] = '-'
+    return li
+def stringDivide(str1, str2, spelling):
+    str1arr = []
+    str2arr = []
+    for i in range(len(str1)-1):
+        substring = str1[i:i+2].lower()
+        if substring[0] in spelling and substring[1] in spelling:
+            str1arr.append(substring)
+    for i in range(len(str2)-1):
+        substring = str2[i:i+2].lower()
+        if substring[0] in spelling and substring[1] in spelling:
+            str2arr.append(substring)
+    return str1arr, str2arr
+def solution(str1, str2):
+    spelling = [chr(i) for i in range(ord('a'), ord('z') + 1)]
+    str1arr, str2arr = stringDivide(str1, str2, spelling)
+    unionArr = union(str1arr, str2arr)
+    intersectionArr = intersection(str1arr, str2arr)
+    print(intersectionArr, unionArr)
+    if not unionArr:
+        return 65536
+    return (len(intersectionArr) / len(unionArr)) * 65536//1

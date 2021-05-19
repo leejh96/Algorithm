@@ -1,0 +1,22 @@
+def solution(n):
+    cnt1 = 0
+    cnt2 = 0
+    li = list(bin(n))
+
+    for i in li:
+        if i == '1':
+            cnt1 += 1
+
+    while True:
+        n += 1
+        li = list(bin(n))
+
+        for i in li:
+            if i == '1':
+                cnt2 += 1
+
+        if cnt1 == cnt2:
+            break
+        else :
+            cnt2 = 0
+    return n

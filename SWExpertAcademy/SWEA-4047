@@ -1,0 +1,22 @@
+T = int(input())
+for i in range(1, T+1):
+    dic = {
+        'S': [],
+        'D': [],
+        'H': [],
+        'C': [],
+    }
+    card = input()
+    err = False
+    for j in range(0,len(card), 3):
+        string = ''
+        string += card[j+1]
+        string += card[j+2]
+        if string in dic[card[j]]:
+            err = True
+            break
+        dic[card[j]].append(string)
+    if err:
+        print(f'#{i} ERROR')
+    else:
+        print(f'#{i} {13-len(dic["S"])} {13-len(dic["D"])} {13-len(dic["H"])} {13-len(dic["C"])}')

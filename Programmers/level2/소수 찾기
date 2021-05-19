@@ -1,0 +1,33 @@
+from itertools import permutations
+
+def solution(numbers):
+    numbers = list(numbers)
+    value = []
+
+    for i in range(len(numbers)):
+        p = permutations(numbers,i+1)
+        li = list(p)
+        for j in range(len(li)):
+            string = ''
+            for k in range(len(li[j])):
+                string = string + li[j][k]
+                if int(string) not in value:
+                    value.append(int(string))
+            
+
+
+    value = list(set(value))
+    print(value)
+    count = 0
+    for i in value:
+        if i == 2:
+            count += 1
+            continue
+        maxRange = i//2 + 1
+        for j in range(2, maxRange + 1):
+            if i % j == 0:
+                break
+            if i % j != 0 and j == maxRange:
+                count += 1
+
+    return count

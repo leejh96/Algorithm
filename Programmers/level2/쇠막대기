@@ -1,0 +1,13 @@
+def solution(arrangement):
+    answer = []
+    count = 0
+    for idx, value in enumerate(arrangement):
+        if value == '(':
+            answer.append(value)
+        elif value == ')' and arrangement[idx-1] == '(':
+            answer.pop()
+            count = count + len(answer)
+        elif value == ')':
+            answer.pop()
+            count += 1
+    return count

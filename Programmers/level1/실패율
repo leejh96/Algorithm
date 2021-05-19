@@ -1,0 +1,21 @@
+def solution(N, stages):
+    percent = {}
+    level = 1
+    count = 0
+    fail = 0
+    while level <= N:
+        for i in range(len(stages)):
+            if stages[i] >= level:
+                if stages[i] > level:
+                    count = count + 1
+                elif stages[i] == level:
+                    count = count + 1
+                    fail = fail + 1
+        if fail == 0:
+            percent[level] = 0
+        else:
+            percent[level] = fail/count
+        fail = 0
+        count = 0
+        level = level + 1
+    return sorted(percent, key=lambda x : percent[x], reverse=True)

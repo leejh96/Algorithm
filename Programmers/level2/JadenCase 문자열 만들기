@@ -1,0 +1,22 @@
+def solution(s):
+    s = s.lower()
+    eng = [chr(i) for i in range(97, 123)]
+    eng.append(' ')
+    count = 0
+    answer = ''
+    s = s.title()
+    for i in s:
+        if i != ' ' and i not in eng:
+            count += 1
+            if count == 2:
+                count = 0
+                answer = answer + i.lower()
+            else:
+                answer = answer + i
+        elif i == ' ':
+            count = 0
+            answer = answer + i
+        else:
+            answer = answer + i
+
+    return answer

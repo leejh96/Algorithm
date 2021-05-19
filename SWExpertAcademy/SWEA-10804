@@ -1,0 +1,16 @@
+T = int(input())
+for i in range(1,T+1):
+    li = input()
+    li = li[::-1]
+    answer = ''
+
+    for j in li:
+        if j == 'b':
+           answer = answer + 'd'
+        elif j == 'd':
+            answer = answer + 'b'
+        elif j == 'q':
+            answer = answer + 'p'
+        else:
+            answer = answer + 'q'
+    print(f'#{i} {answer}')

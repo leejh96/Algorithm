@@ -1,0 +1,8 @@
+def solution(phoneBook):
+    ans = True
+    phoneBook.sort()
+    for i in range(len(phoneBook)-1):
+        if phoneBook[i] in phoneBook[i+1]:
+            ans = False
+            break
+    return ans

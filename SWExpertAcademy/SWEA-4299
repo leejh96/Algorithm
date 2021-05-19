@@ -1,0 +1,15 @@
+T = int(input())
+
+for i in range(1, T+1):
+    answer = 0
+    D, H, M = input().split()
+    if  int(D) * 60 * 24 + int(H) * 60 + int(M) < 11 * 60 * 24 + 11 * 60 + 11:
+        answer = -1
+    else:
+        D = int(D) - 11
+        H = int(H) - 11
+        M = int(M) - 11
+
+        answer = D * 60 * 24 + H * 60 + M
+
+    print(f'#{i} {answer}')

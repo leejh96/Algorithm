@@ -1,0 +1,24 @@
+def solution(dartResult):
+    goal = {'S' : 1, 'D' : 2, 'T' : 3}
+    operate = {'*' : 2, '#' : -1}
+    score = [0,0,0]
+    flag = -1
+
+    for index,value in enumerate(dartResult):
+        if value.isdigit():
+            flag = flag + 1
+            if value == '0':
+                continue
+            elif dartResult[index + 1].isdigit():
+                score[flag] = int(value)*10
+                flag = flag - 1
+            else:
+                score[flag] = int(value)
+        elif value in 'SDT':
+            score[flag] = score[flag] ** goal[value]
+
+        else:
+            if value == '*':
+                score[flag - 1] = score[flag - 1] * 2
+            score[flag] = score[flag] * operate[value]
+    return sum(score)

@@ -1,0 +1,19 @@
+T = int(input())
+
+for i in range(1,T+1):
+    string = list(input())
+    string.sort()
+    li = []
+    for j in string:
+        if not li:
+            li.append(j)
+        else:
+            if li[-1] == j:
+                li.pop()
+            else:
+                li.append(j)
+    if not li:
+        answer = 'Good'
+    else:
+        answer = ''.join(li)
+    print(f'#{i} {answer}')

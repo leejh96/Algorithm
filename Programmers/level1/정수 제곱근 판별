@@ -1,0 +1,10 @@
+import math
+
+def solution(n):
+    answer = math.sqrt(n)
+
+    if int(answer) * int(answer) == n:
+        return (int(answer + 1)*int(answer + 1))
+    else:
+        return -1
+    return answer

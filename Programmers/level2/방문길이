@@ -1,0 +1,32 @@
+def solution(dirs):
+    distance = 0
+    value = {'U': (1, 0), 'D': (-1, 0), 'R': (0, 1), 'L': (0, -1)}
+    x, y = 0, 0
+    visit = set()
+
+    for i in dirs:
+        vx, vy = value[i] #움직여야할 좌표
+        nx, ny = x + vx, y + vy #현 위치에서 움직여야할 좌표로 움직인 후 좌표
+        if nx > 5:
+            nx -= 1
+            continue
+        if nx < -5:
+            nx += 1
+            continue
+        if ny < -5:
+            ny += 1
+            continue
+        if ny > 5:
+            ny -= 1
+            continue
+        go = (x, y, nx, ny) # 현 위치와 움직인 위치를 같이 저장
+        back = (nx, ny, x, y)# go의 반대반향은 왔던 길이므로 같이 visit에 저장 ((1,0) -> (1,-1)) = ((1,-1)(1,0))
+        x,y = nx, ny
+        if go not in visit:
+            visit.add(go)
+            visit.add(back)
+            distance += 1
+
+    print(distance)
+
+    return distance

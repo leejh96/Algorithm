@@ -1,0 +1,54 @@
+#include <iostream>
+
+using namespace std;
+
+int main()
+{
+    int x;
+    int y;
+
+    cin >> x; //tc
+    if(x < 1 || x > 10){
+        cin >> x;
+    }
+
+    for(int a = 0; a<x; a++){
+        cin >> y;
+
+        int ** arr = new int*[y];
+        for(int i = 0; i<= y; i++ ){
+            arr[i] = new int[i];
+        }
+
+        for(int i = 0; i<y; i++){
+            for(int j = 0; j < y; j++){
+                arr[i][j] = 0;
+            }
+        }
+        for(int i = 0; i< y; i++){
+            for(int j = 0; j<=i; j++){
+                if(j == 0 || i == j){
+                    arr[i][j] = 1;
+                }
+                else{
+                    arr[i][j] = arr[i-1][j-1] + arr[i-1][j];
+                }
+            }
+        }
+        cout << "#"<<a+1<<endl;
+
+        for(int i = 0; i < y; i++){
+            for(int j = 0; j<= i; j++){
+                cout << arr[i][j]<< " ";
+            }
+            cout << endl;
+        }
+        for(int i = 0; i <= y; i++){
+            delete [] arr[i];
+        }
+        delete [] arr;
+    }
+
+
+    return 0;
+}

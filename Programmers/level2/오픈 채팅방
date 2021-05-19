@@ -1,0 +1,21 @@
+def solution(record):
+    result = []
+    listResult = []
+    dic = {}
+    for i in record:
+        li = i.split(' ')
+        if li[0] == 'Enter':
+            dic[li[1]] = li[2]
+            listResult.append(li[1]+'E')
+        elif li[0] == 'Leave':
+            listResult.append(li[1]+'L')
+        elif li[0] == 'Change':
+            dic[li[1]] = li[2]
+
+    for i in listResult:
+        if i[-1] == 'E':
+            result.append(dic[i[:-1]]+'님이 들어왔습니다.')
+        elif i[-1] == 'L':
+            result.append(dic[i[:-1]]+'님이 나갔습니다.')
+
+    return result    

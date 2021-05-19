@@ -1,0 +1,36 @@
+def solution(new_id):
+    new_id = new_id.lower()#1
+    special_char = ['-','_','.']
+    alp = [chr(i) for i in range(97, 123)]
+    num = [str(i) for i in range(0,10)]
+    answer = list(new_id)
+    br = False
+    while not br:
+        br = True
+        for i in range(len(answer)):#2
+            if answer[i] not in special_char and answer[i] not in alp and answer[i] not in num:
+                answer.pop(i)
+                br = False
+                break
+        for i in range(len(answer)-1):
+            if i < len(answer)-1 and answer[i] == '.' and answer[i+1] == '.':
+                answer.pop(i)
+                br = False
+                break
+        for i in range(len(answer)):
+            if (i == 0 or i == len(answer)-1) and answer[i] == '.':
+                answer.pop(i)
+                br = False
+                break
+    if not answer:
+        answer.append('a')
+    if len(answer) < 3:
+        if answer[-1] == '.':
+            answer.pop()
+        while len(answer) < 3:
+            answer.append(answer[-1])
+    if len(answer) > 15:
+        answer = answer[:15]
+        if answer[-1] == '.':
+            answer.pop()
+    return(''.join(answer))

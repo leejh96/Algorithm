@@ -1,0 +1,48 @@
+def timeCalculation(time1, time2):
+    aftertime = list(map(int, time2.split(':')))
+    beforetime = list(map(int, time1.split(':')))
+    time = (aftertime[0] * 60 + aftertime[1]) - (beforetime[0]*60 + beforetime[1])
+    return time
+# 4, 6, 8 ,11
+def makeCode(share, remainder, code): # 5 code 17
+    if share == 0:
+        retCode = code[:remainder]
+        return retCode
+    else:
+        retCode = code * share
+        retCode = retCode + code[:remainder]
+        return retCode
+
+def findAnswer(msg, code, val):
+    answer = ''
+    if msg not in code:
+        return answer
+    else:
+        answer += val
+        return answer
+def replaceString(string):
+    string = string.replace('C#', 'c')
+    string = string.replace('D#', 'd')
+    string = string.replace('F#', 'f')
+    string = string.replace('A#', 'a')
+    string = string.replace('G#', 'g')
+    return string
+def solution(m, musicinfos):
+    answer = []
+    msg = replaceString(m)
+    for idx, info in enumerate(musicinfos):
+        info = replaceString(info)
+        li = info.split(',')
+        time = timeCalculation(li[0], li[1])
+        play = time // len(li[3])
+        reminder = time % len(li[3])
+        code = makeCode(play, reminder, li[3])
+        if findAnswer(msg, code, li[2]):
+            answer.append([idx, time, findAnswer(msg, code, li[2])])
+        print(answer)
+    if not answer:
+        return '(None)'
+    else:
+        answer = sorted(answer, key= lambda x: (-x[1], x[0]))
+        print(answer)
+        return answer[0][2]

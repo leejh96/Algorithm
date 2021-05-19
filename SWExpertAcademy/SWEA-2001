@@ -1,0 +1,39 @@
+#include <iostream>
+using namespace std;
+
+int main()
+{
+    int x;
+    cin >> x;
+
+
+    for(int i = 0; i < x; i++){
+        int N;
+        int M;
+        cin >> N >> M;
+        int arr[N][N];
+        int sum = 0;
+        for(int j = 0; j< N; j++){
+            for(int k = 0; k<N; k++){
+                cin >> arr[j][k];
+            }
+        }
+        int max = 0;
+        for(int a = 0; a<=N-M; a++){
+            for(int b = 0; b<=N-M; b++){
+                int sum = 0;
+                for(int c = a; c< a+M; c++){
+                    for(int d = b; d< b+M; d++){
+                        sum = sum + arr[c][d];
+                    }
+                }
+                if(max < sum){
+                    max = sum;
+                }
+            }
+        }
+        cout << "#"<<i+1<<" "<<max<<endl;
+
+    }
+    return 0;
+}

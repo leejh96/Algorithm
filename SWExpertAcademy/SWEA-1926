@@ -1,0 +1,49 @@
+#include <iostream>
+#include <string>
+using namespace std;
+
+int main()
+{
+    int x;//무슨 수 까지 할 지 선택
+    int y;//1의 자리 수가 3,6,9인지 확인
+    int z;//1의 자리 수 외의 자리수가 3,6,9인지 확인
+    int index;//index 만큼을 반복
+    cin >> x;
+
+    for(int i = 1; i <= x; i++){
+        index = 0;
+        y = i%10;
+        z = i/10;
+        if(y == 3 || y == 6 || y == 9){
+            index++;
+
+        }
+        if(z == 3 || z == 6 || z == 9){
+            index++;
+        }
+        while(z >= 10){
+            if(z % 10 == 3 || z % 10 == 6 || z % 10 == 9){
+                index++;
+            }
+            z = z/10;
+            if(z == 3 || z == 6 || z == 9){
+                index++;
+            }
+
+            z = z/10;
+        }
+
+
+        if(index != 0){
+            for(int j = 0; j< index; j++){
+                cout << "-";
+            }
+            cout << " ";
+            continue;
+
+        }
+        cout << i << " ";
+
+    }
+    return 0;
+}

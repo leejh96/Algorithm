@@ -1,0 +1,51 @@
+#include <iostream>
+#include <algorithm>
+#include <string>
+using namespace std;
+
+int main()
+{
+	int x;//테스트케이스
+	int N;//학생수
+	int z;//점수를 알고싶은 학생
+	string s[] = { "A+", "A0", "A-", "B+", "B0", "B-", "C+", "C0", "C-", "D0" };
+	cin >> x;
+
+	for (int i = 0; i < x; i++) {
+		cin >> N;
+		cin >> z;
+
+		int a;//중간 35%
+		int b;//기말 45%
+		int c;//과제 20%
+		int score;//찾은학생의 점수
+		int ranking;//등수
+
+		int *sum = new int[N];
+
+		for (int j = 0; j < N; j++) {
+
+			cin >> a;
+			cin >> b;
+			cin >> c;
+
+			sum[j] = (a * 35 + b * 45 + c * 20);
+		}
+		score = sum[z - 1];
+		sort(sum, sum + N);
+		for (int k = 0; k < N; k++) {
+			if (score == sum[k]) {
+				ranking = N - k;//실제등수
+				break;
+			}
+		}
+		if ((ranking % (N / 10)) != 0) {
+			cout << "#" << i + 1 << " " << s[ranking / (N / 10)] << endl;
+		}
+		else {
+			cout << "#" << i + 1 << " " << s[ranking / (N / 10) - 1] << endl;
+		}
+        delete [] sum;
+	}
+	return 0;
+}

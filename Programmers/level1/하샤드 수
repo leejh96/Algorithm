@@ -1,0 +1,12 @@
+def solution(x):
+    answer = True
+    sum = 0
+    s = str(x)
+    for i in range(len(s)):
+        sum = sum  + int(s[i])
+        
+    if x % sum == 0:
+        return answer
+    else:
+        answer = False
+        return answer

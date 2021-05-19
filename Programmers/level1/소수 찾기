@@ -1,0 +1,17 @@
+
+function solution(n) {
+    var answerArr = [];
+    const answer = [];
+    for(let i = 2; i <= n; i++){
+        answerArr.push(i);
+    }
+    for(let i = 0; i<= answerArr.length; i++){
+        if(answerArr[i]){
+            answer.push(answerArr[i])
+            for(let j = i + answerArr[i]; answerArr[j] <= n; j+=answerArr[i]){
+                answerArr[j] = false;
+            }
+        }
+    }
+    return answer.length;
+}

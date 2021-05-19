@@ -1,0 +1,15 @@
+T =int(input())
+
+for i in range(1, T+1):
+    li = []
+    answer = 0
+    N = int(input())
+    for j in range(N):
+        k = int(input())
+        li.append(k)
+    val = sum(li)
+    div = val//N
+    for j in li:
+        if j > div:
+            answer = answer + j - div
+    print(f"#{i} {answer}")

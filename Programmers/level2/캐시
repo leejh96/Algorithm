@@ -1,0 +1,20 @@
+def solution(cacheSize, cities):
+    answer = 0
+    cache = []
+    if cacheSize == 0:
+        return len(cities) * 5
+    for i in cities:
+        i = i.lower()
+        if i not in cache:
+            answer += 5
+            if len(cache) != cacheSize:
+                cache.append(i)
+            else:
+                cache.pop(0)
+                cache.append(i)
+        else:
+            idx = cache.index(i)
+            cache.pop(idx)
+            cache.append(i)
+            answer += 1
+    return answer

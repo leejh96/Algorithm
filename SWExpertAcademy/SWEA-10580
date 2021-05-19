@@ -1,0 +1,16 @@
+t = int(input())
+
+for i in range(1, t+1):
+    n = int(input())
+    dic = {}
+    count = 0
+    for j in range(n):
+        x,y = map(int, input().split())
+        dic[x] = y
+    dic = sorted(dic.items())
+    for j in range(len(dic)-1):
+        for k in range(j+1, len(dic)):
+            if dic[j][1] > dic[k][1]:
+                count += 1
+    print(f'#{i} {count}')
+

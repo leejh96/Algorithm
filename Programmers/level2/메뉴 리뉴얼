@@ -1,0 +1,32 @@
+from itertools import combinations
+def string_sort(string):
+    li = ''.join(sorted(list(string)))
+    return li
+
+def AllList(li1, li2):
+    li1 = li1 + li2
+    return li1
+def stringValue(li):
+    li = list(set(li))
+    li.sort()
+    for i in range(len(li)):
+        li[i] = ''.join(li[i])
+    print(li)
+    return li
+def solution(orders, course):
+    answer = []
+    for i in course:
+        li = []
+        cnt = []
+        for j in orders:
+            j = string_sort(j)
+            com = list(combinations(j,i))
+            li = AllList(li, com)
+        for j in li:
+            cnt.append(li.count(j))
+        for j in range(len(cnt)):
+            if max(cnt) > 1:
+                if cnt[j] == max(cnt) and cnt[j] not in answer:
+                    answer.append(li[j])
+    answer = stringValue(answer)
+    return answer

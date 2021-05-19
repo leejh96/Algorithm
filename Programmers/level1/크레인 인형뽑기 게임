@@ -1,0 +1,23 @@
+def solution(board, moves):
+    count = 0
+    answer = []
+    stop = False
+    for i in moves:
+        idx = i-1
+        for j in range(len(board)):
+            if board[j][idx] != 0:
+                answer.append(board[j][idx])
+                board[j][idx] = 0
+                break
+    while not stop:
+        if not answer or len(answer) == 1:
+            break
+        for i in range(len(answer)-1):
+            if answer[i] == answer[i+1]:
+                answer.pop(i)
+                answer.pop(i)
+                count += 2
+                break
+            elif i == len(answer)-2:
+                stop = True
+    return count

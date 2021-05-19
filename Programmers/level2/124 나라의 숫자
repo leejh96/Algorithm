@@ -1,0 +1,9 @@
+def solution(n):
+    answer = ''
+    while n:
+        n, m = divmod(n, 3)
+        ans = "412"
+        answer = ans[m] + answer
+        if not m:
+            n -= 1
+    return answer

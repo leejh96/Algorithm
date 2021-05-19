@@ -1,0 +1,8 @@
+import math
+
+def solution(brown, yellow):
+    answer = []
+    for i in range(1, int(math.sqrt(yellow))+1):#노란색 층수 세기
+        if yellow % i == 0:
+            if 2*(i+(yellow / i))+4 == brown:#갈색 갯수
+                return [int(yellow)/i+2, i+2]

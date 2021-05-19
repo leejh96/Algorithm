@@ -1,0 +1,32 @@
+def solution(n, t, m, p):
+    i = 0
+    li = ''
+    result = ''
+    count = p - 1
+    while i <= m*t:
+        callli = ''
+        q = i
+        if q >= n:
+            while q >= n:
+                r = q % n
+                q = q // n
+                if r >= 10:
+                    callli = callli + chr(55 + r)
+                else:
+                    callli = callli + str(r)
+            if q >= 10:
+                callli = callli + chr(55+q)
+            else:
+                callli = callli + str(q)
+        else:
+            if q >= 10:
+                callli = callli + chr(55+q)
+            else:
+                callli = callli + str(q)
+        li = li + callli[::-1]
+        i += 1
+    while len(result) != t:
+        result = result + li[count]
+        count = count + m
+
+    return result

@@ -1,0 +1,32 @@
+def solution(numbers, hand):
+    answer = ''
+    pointL = 10
+    pointR = 12
+
+    for i in numbers:
+        if i == 1 or i == 4 or i == 7 :
+            answer = answer + 'L'
+            pointL = i
+        elif i == 3 or i == 6 or i == 9:
+            answer = answer + 'R'
+            pointR = i
+        else:
+            if i == 0:
+                i = 11
+            a = abs(i - pointL)//3 + abs(i - pointL)%3
+            b = abs(i - pointR)//3 + abs(i - pointR)%3
+            if a < b:
+                answer = answer + 'L'
+                pointL = i
+            elif a > b:
+                answer = answer + 'R'
+                pointR = i
+            else:
+                if hand == 'right':
+                    answer = answer + 'R'
+                    pointR = i
+                else:
+                    answer = answer + 'L'
+                    pointL = i
+
+    return answer

@@ -1,0 +1,16 @@
+def solution(operations):
+    li = []
+
+    for i in operations:
+        if i[0] == 'I':
+            li.append(int(i[2:]))
+        elif len(li) > 0 and int(i[2:]) < 0:
+            li.remove(min(li))
+        elif len(li) > 0 and int(i[2:]) > 0:
+            li.remove(max(li))
+
+    if li :
+        return [max(li), min(li)]
+    else:
+        li = [0,0]
+        return li

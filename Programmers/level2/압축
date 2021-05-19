@@ -1,0 +1,23 @@
+def solution(msg):
+    answer = []
+    dic = {}
+    x = 65
+    i = 1
+    while x < 91:
+        dic[chr(x)] = i
+        x += 1
+        i += 1
+    idx = 1
+    idx2 = 0
+    while True:
+        val = msg[idx2:idx]
+        if val in dic:
+            if idx == len(msg):
+                answer.append(dic[msg[idx2:]])
+                break
+            idx += 1
+        else:
+            dic[val] = len(dic) + 1
+            answer.append(dic[msg[idx2 : idx-1]])
+            idx2 = idx-1
+    return answer

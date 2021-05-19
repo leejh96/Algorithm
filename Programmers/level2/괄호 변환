@@ -1,0 +1,47 @@
+def divideUV(p):
+    countRight, countLeft = 0, 0
+    for i in range(len(p)):
+        if p[i] == ')':
+            countLeft += 1
+        elif p[i] == '(':
+            countRight += 1
+        if countLeft == countRight:
+            u = p[:i + 1]
+            v = p[i + 1:]
+            return u, v
+def checkCorrect(u):
+    if u ==  '':
+        return True
+    u = list(u)
+    stack = []
+    for i in u:
+        if not stack:
+            stack.append(i)
+        elif stack[-1] == '(' and i == ')':
+            stack.pop()
+        else:
+            stack.append(i)
+    if stack:
+        return False
+    else:
+        return True
+
+
+def solution(p):
+    if not p:
+        return ''
+    u, v = divideUV(p)
+    if checkCorrect(u):
+        return u + solution(v)
+    else:
+        answer = '('
+        answer = answer + solution(v)
+        answer = answer + ')'
+
+        for i in range(1, len(u)-1):
+            if u[i] == '(':
+                answer += ')'
+            else :
+                answer += '('
+
+        return answer

@@ -1,0 +1,12 @@
+def solution(s):
+    count = 0
+    slength = len(s)
+    countlen = 0
+    while s != '1':
+        s = s.replace('0', '')
+        countlen = countlen + (slength - len(s))
+        s = str(bin(len(s)))[2:]
+        slength = len(s)
+        count += 1
+    answer = [count, countlen]
+    return answer

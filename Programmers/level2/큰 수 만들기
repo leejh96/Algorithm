@@ -1,0 +1,13 @@
+def solution(number, k):
+    answer = []
+    for idx, val in enumerate(number):
+        while len(answer) > 0 and answer[-1] < val and k > 0:
+            answer.pop()
+            k -= 1
+        if k == 0:
+            answer += list(number[idx:])
+            break
+
+        answer.append(val)
+    answer = answer[:-k] if k > 0 else answer
+    return ''.join(answer)

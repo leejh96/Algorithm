@@ -1,0 +1,20 @@
+def solution(skill, skill_trees):
+    answer = 0
+    sk = list(skill)
+    for i in skill_trees:
+        value = []
+        for j in range(len(i)):
+            if i[j] in sk:
+                value.append(i[j])
+            else:
+                continue
+        if not value:
+            answer +=1
+        for j in range(len(value)):
+            if sk[j] == value[j]:
+                if j == len(value) -1:
+                    answer += 1
+                continue
+            else:
+                break
+    return answer

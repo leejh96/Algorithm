@@ -1,0 +1,19 @@
+def solution(prices):
+    answer = []
+    cnt = 0
+    i = 0
+    while cnt < len(prices):
+        base = prices[i]
+        sol = 0
+        for j in range(i,len(prices)):
+            if j == len(prices)-1:
+                answer.append(sol)
+                break
+            if base > prices[j]:
+                answer.append(sol)
+                break
+            else:
+                sol += 1
+        i += 1
+        cnt += 1
+    return answer

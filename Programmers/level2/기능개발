@@ -1,0 +1,21 @@
+def solution(progresses, speeds):
+    answer = []
+    for idx, value in enumerate(progresses):
+        count = 0
+        while value < 100:
+            value = value + speeds[idx]
+            count += 1
+        answer.append(count)
+
+    answer1 = []
+    cnt = 1
+    base = answer[0]
+    for i in range(len(answer)-1):
+        if base >= answer[i+1]:
+            cnt += 1
+        else:
+            answer1.append(cnt)
+            base = answer[i+1]
+            cnt = 1
+    answer1.append(cnt)
+    return answer1

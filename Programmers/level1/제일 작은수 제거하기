@@ -1,0 +1,8 @@
+def solution(arr):
+    arr.remove(min(arr))
+    if arr:
+        return arr
+    else:
+        arr.append(-1)
+        return arr
+

@@ -1,0 +1,47 @@
+#include <iostream>
+
+using namespace std;
+
+int main()
+{
+    int x;
+    cin >> x;
+
+    for(int i = 0; i< x; i++){
+        int y;
+        int d = 0;
+        int spd = 0;
+        cin >> y;
+
+        int *cmd = new int[y];
+        int *speed = new int[y];
+
+        for(int j = 0; j<y; j++){
+            cin >> cmd[j];
+            if(cmd[j] == 0){
+                speed[j] = 0;
+            }
+            else{
+                cin >> speed[j];
+            }
+        }
+
+        for(int j = 0; j<y; j++){
+            if(cmd[j] == 1 || cmd[j] == 0){
+                spd = spd + speed[j];
+                d = d + spd;
+            }
+            else{
+                spd = spd - speed[j];
+                if(spd < 0){
+                    spd = 0;
+                }
+				d = d + spd;
+            }
+        }
+        cout << "#" << i+1 << " " << d << endl;
+        delete [] cmd;
+        delete [] speed;
+    }
+    return 0;
+}

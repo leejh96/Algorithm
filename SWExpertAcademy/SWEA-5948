@@ -1,0 +1,11 @@
+from itertools import combinations
+
+T = int(input())
+for i in range(1, T+1):
+    hap = []
+    li = list(map(int, input().split()))
+    cnt = list(combinations(li, 3))
+    for j in cnt:
+        hap.append(sum(j))
+    hap = sorted(list(set(hap)))
+    print(f'#{i} {hap[-5]}')

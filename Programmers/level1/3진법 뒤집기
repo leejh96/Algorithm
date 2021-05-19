@@ -1,0 +1,17 @@
+def solution(n):
+    li = []
+    if n > 3:
+        while(n>2):
+            a,b = divmod(n,3)
+            li.append(b)
+
+            if a < 3:
+                li.append(a)
+            n = a
+    else:
+        li.append(n)
+    sum = 0
+    for i in range(len(li)):
+        sum = sum + li[i] * (3 ** (len(li)-1-i))
+
+    return sum

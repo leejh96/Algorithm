@@ -1,0 +1,17 @@
+def solution(n):
+    answer = 0
+    count = 0
+    target = 0
+    i = 0
+    while i < n:
+        target = 0
+        while answer < n:
+            count += 1
+            target = target + count
+            if target >= n:
+                if target == n:
+                    answer += 1
+                break
+        i += 1
+        count = i
+    return answer

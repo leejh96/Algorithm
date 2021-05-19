@@ -1,0 +1,18 @@
+def solution(s, n):
+    answer = []
+    list(s)
+    for i in s:
+        j = ord(i)
+        if i == ' ':
+            answer.append(i)
+        if (j>=65) and (j<=90):
+            if j+n > 90:
+                answer.append(chr(j+n-26))
+            else:
+                answer.append(chr(j+n))
+        elif (j >= 97) and (j<=122):
+            if j+n >122:
+                answer.append(chr(j+n-26))
+            else:
+                answer.append(chr(j+n))
+    return ''.join(answer)

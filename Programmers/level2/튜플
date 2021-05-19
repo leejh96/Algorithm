@@ -1,0 +1,21 @@
+def solution(s):
+    num = []
+    dic = {}
+
+    s1 = ''
+    for i in s:
+        if i.isdigit():
+            s1 += i
+        else:
+            if s1:
+                num.append(int(s1))
+                s1 = ''
+    numSet = set(num)
+    for i in numSet:
+        cnt = num.count(i)
+        dic[i] = cnt
+    li = sorted(dic.items(), key=lambda x: x[1], reverse=True)
+    answer = []
+    for i in li:
+        answer.append(int(i[0]))
+    return answer

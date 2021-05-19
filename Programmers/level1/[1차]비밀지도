@@ -1,0 +1,9 @@
+def solution(n, arr1, arr2):
+    answer = []
+    for a,b in zip(arr1, arr2):
+        a1 = str(bin(a|b))[2:]
+        a1 = '0'*(n-len(a1)) + a1
+        a1 = a1.replace('1','#')
+        a1 = a1.replace('0',' ')
+        answer.append(a1)            
+    return answer

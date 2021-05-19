@@ -1,0 +1,10 @@
+def solution(numbers, target):
+    li = [0] # 1의 해당하는 -,+값을 만들어주기위해
+    for i in numbers:
+        temp =[]
+        for j in li:#하나의 값에 대하여 계속 더하거나 빼준다
+            temp.append(j+i)
+            temp.append(j-i)
+        li = temp
+    
+    return li.count(target)

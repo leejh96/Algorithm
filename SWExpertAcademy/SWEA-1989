@@ -1,0 +1,37 @@
+#include <iostream>
+#include <string>
+using namespace std;
+
+int main()
+{
+    int x;
+    cin >> x;
+    string s;
+
+
+    for(int i = 0; i < x; i++){
+        bool b = false;
+        cin >> s;
+        int a = s.size() -1;
+        int c = s.size() -1;
+        for(int j = 0; j<=a; j++){
+            if(j >= c){
+                b = true;
+                break;
+            }
+            if(s[j] == s[c]){
+                c--;
+            }
+            else{
+                break;
+            }
+        }
+        if(b == true){
+            cout << "#"<<i+1<<" "<< 1 <<endl;
+        }
+        else{
+            cout << "#"<<i+1<<" "<< 0 <<endl;
+        }
+    }
+    return 0;
+}

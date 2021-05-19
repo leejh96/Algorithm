@@ -1,0 +1,17 @@
+def solution(s):
+    li = []
+    answer = 0
+
+    for i in s:
+        if not li:
+            li.append(i)
+        else:
+            if li[-1] == i:
+                li.pop()
+            else:
+                li.append(i)
+
+    if not li:
+        answer = 1
+
+    return answer

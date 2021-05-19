@@ -1,0 +1,33 @@
+def solution(genres, plays):
+    dic = {
+
+    }
+    dic2 = {
+
+    }
+    answer = []
+
+    for idx, val in enumerate(genres):
+        if val in dic:
+            dic[val] = dic[val]+ plays[idx]
+        else:
+            dic[val] = plays[idx]
+        dic2[idx] = val
+    dic = sorted(dic.items(), key= lambda x : x[1], reverse=True)
+
+
+
+    for val in dic:
+        print(val)
+        li = []
+        for i in range(len(dic2)):
+            if val[0] == dic2[i]:
+                li.append(i)
+        li.sort(key= lambda x: plays[x], reverse=True)
+        if len(li) < 2:
+            answer.append(li[0])
+        else:
+            answer.append(li[0])
+            answer.append(li[1])
+
+    return answer

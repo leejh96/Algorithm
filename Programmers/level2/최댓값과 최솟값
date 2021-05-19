@@ -1,0 +1,8 @@
+def solution(s):
+    answer = []
+    li = s.split(' ')
+    li = list(map(int,li))
+
+    answer.append(min(li))
+    answer.append(max(li))
+    return ' '.join(map(str,answer))

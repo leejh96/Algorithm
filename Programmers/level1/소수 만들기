@@ -1,0 +1,15 @@
+from itertools import combinations
+def solution(nums):
+    com = list(combinations(nums, 3))
+    result = 0
+
+    for i in com:
+        a = sum(i)
+        b = True
+        for j in range(2, a):
+            if a % j == 0:
+                b = False
+                break
+        if b == True:
+            result += 1
+    return result
