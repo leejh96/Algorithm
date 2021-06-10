@@ -1,0 +1,12 @@
+t = int(input())
+
+for i in range(1,t+1):
+    li = list(input())
+    li = set(li)
+
+    if len(li) != 2:
+        answer = 'No'
+    else:
+        answer = 'Yes'
+
+    print(f'#{i} {answer}')
