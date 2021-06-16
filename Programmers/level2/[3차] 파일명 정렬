@@ -1,0 +1,30 @@
+def solution(files):
+    fileList = []
+    answer = []
+    for i in files:
+        sH,sN,sT='', '', ''
+        dic = {}
+        idx, cnt = 0, 0
+        dic['file'] = i
+        for j in i:
+            if j.isdigit() and cnt == 0:
+                idx = i.index(j)
+                cnt += 1
+            if j.isdigit() and cnt !=0:
+                cnt += 1
+            if cnt != 0 and not j.isdigit():
+                break
+        sH += i[:idx]
+        sN += i[idx:idx+cnt-1]
+        sT += i[idx+cnt-1 :]
+
+        dic['head'] = sH.lower()
+        dic['number'] = int(sN)
+        dic['tail'] = sT
+
+        fileList.append(dic)
+
+    result = sorted(fileList, key=lambda x:(x['head'],x['number']))
+    for j in result:
+        answer.append(j['file'])
+    return answer
