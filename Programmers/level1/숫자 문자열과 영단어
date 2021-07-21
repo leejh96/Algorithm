@@ -1,0 +1,26 @@
+def solution(s):
+    number = {}
+    number['zero'] = '0';
+    number['one'] = '1';
+    number['two'] = '2';
+    number['three'] = '3';
+    number['four'] = '4';
+    number['five'] = '5';
+    number['six'] = '6';
+    number['seven'] = '7';
+    number['eight'] = '8';
+    number['nine'] = '9';
+    
+    answer = ''
+    string = ''
+    for i in s:
+        if i.isdigit():
+            answer += i
+            string = ''
+        else:
+            string += i
+        
+        if string in number:
+            answer += number[string]
+            string = ''
+    return int(answer)
