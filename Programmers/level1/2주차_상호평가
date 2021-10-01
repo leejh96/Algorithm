@@ -1,0 +1,30 @@
+def solution(scores):
+    answer = []
+    for i in range(len(scores)):
+        student= []
+        value = 0
+        for j in range(len(scores)):
+            student.append(scores[j][i])
+        cnt = len(student)
+        maxValue = max(student)
+        minValue = min(student)
+        myself = scores[i][i]
+        for j in student:
+            value += j
+        if myself == maxValue or myself == minValue:
+            if student.count(myself) == 1:
+                cnt -= 1
+                value -= myself
+        score = value / cnt
+        if score >= 90:
+            answer.append('A')
+        elif score >= 80:
+            answer.append('B')
+        elif score >= 70:
+            answer.append('C')
+        elif score >= 50:
+            answer.append('D')
+        else:
+            answer.append('F')
+
+    return ''.join(answer)
