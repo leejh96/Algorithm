@@ -1,0 +1,28 @@
+def solution(weight, head2head):
+    player = {}
+    answer = []
+    for i in range(len(head2head)):
+        fightCnt = 0
+        myWeight = weight[i]
+        myNumber = i + 1
+        overWeightWin = 0
+        win = 0
+
+        for j in range(len(head2head[i])):
+            if head2head[i][j] == 'W':
+                win += 1
+                fightCnt += 1
+                if myWeight < weight[j]:
+                    overWeightWin += 1
+            if head2head[i][j] == 'L':
+                fightCnt += 1
+
+
+        if fightCnt == 0:
+            fightCnt = 1
+        player[i + 1] = [win / fightCnt, overWeightWin, myWeight, myNumber]
+    li = sorted(player.items(), key=lambda x:(-x[1][0], -x[1][1], -x[1][2], x[1][3]))
+
+    for i in li:
+        answer.append(i[0])
+    return answer
