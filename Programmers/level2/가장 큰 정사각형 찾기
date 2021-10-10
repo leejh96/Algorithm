@@ -1,0 +1,27 @@
+def solution(board):
+    totalMax = 0
+    answer = 0
+    itemLength = len(board[0])
+    boardLength = len(board)
+    x = 1
+    y = 1
+
+
+    while True:
+        if x == boardLength:
+            for i in board:
+                maxValue = max(i)
+                if totalMax < maxValue:
+                    totalMax = maxValue
+            return (totalMax * totalMax)
+
+        if board[x][y] != 0:
+            left = board[x][y-1]
+            top = board[x-1][y]
+            leftTop = board[x-1][y-1]
+            board[x][y] = min(left, top, leftTop) + 1
+        if y == itemLength - 1:
+            y = 0
+            x += 1
+        y += 1
+    return answer
