@@ -1,0 +1,12 @@
+def solution(table, languages, preference):
+    dic = {}
+    for i in table:
+        point = 0
+        data = i.split(' ')[1:]
+        for j in data:
+            if j in languages:
+                point += preference[languages.index(j)] * (5 - data.index(j))
+
+        dic[i.split(' ')[0]] = point
+    dic = sorted(dic.items(), key=lambda x: (-x[1], x[0]))
+    return(dic[0][0])

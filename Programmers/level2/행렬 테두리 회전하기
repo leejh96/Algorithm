@@ -1,0 +1,86 @@
+rows = 3
+columns = 3
+queries = [[1,1,2,2],[1,2,2,3],[2,1,3,2],[2,2,3,3]]
+# (2, 2) (2, 4) (5, 2) (5, 4)
+def CreateMatrix(row, column):
+    cnt = 1
+    M = []
+    for r in range(row):
+        num = []
+        for c in range(column):
+            num.append(cnt)
+            cnt += 1
+        M.append(num)
+    return M
+
+def divideXY(query):
+    x = []
+    y = []
+    for j in range(len(query)):
+        if j % 2 == 0:
+            x.append(query[j])
+        else:
+            y.append(query[j])
+    return x, y
+
+def minMax(li):
+    return min(li), max(li)
+
+def changePoint(minX, maxX, minY, maxY, M):
+    li = []
+    temp = []
+    LL = []
+    for j in range(minX - 1, maxX):
+        for k in range(minY - 1, maxY):
+            if j == minX - 1 or j == maxX - 1:
+                if j == minX - 1:
+                    li.append(M[j][k])
+                else:
+                    LL.append(M[j][k])
+            else:
+                if k == minY - 1 or k == maxY - 1:
+                    if k == minY - 1:
+                        temp.append(M[j][k])
+                    else:
+                        li.append(M[j][k])
+            if len(LL) == maxY - minY + 1:
+                while LL:
+                    li.append(LL.pop())
+    return li, temp
+
+def applyM(minX, maxX, minY, maxY, M, li):
+    idx = 0
+    for j in range(minX - 1, maxX):
+        for k in range(minY - 1, maxY):
+            if j != minX - 1 and j != maxX - 1:
+                if k == minY - 1:
+                    M[j][k] = li.pop()
+                if k == maxY - 1:
+                    M[j][k] = li[idx]
+                    idx += 1
+            elif j == maxX - 1:
+                M[j][k] = li.pop()
+            else:
+                M[j][k] = li[idx]
+                idx += 1
+    return M
+def solution(rows, columns, queries):
+    answer = []
+    M = CreateMatrix(rows, columns)
+    for i in queries:
+
+        x, y = divideXY(i)
+        minX, maxX = minMax(x)
+        minY, maxY = minMax(y)
+        li, temp = changePoint(minX, maxX, minY, maxY, M)
+        while temp:
+            li.append(temp.pop())
+        a = li.pop()
+        li.insert(0, a)
+        answer.append(min(li))
+        M = applyM(minX, maxX, minY, maxY, M, li)
+        print(answer)
+    return answer
+
+
+solution(rows, columns, queries)
