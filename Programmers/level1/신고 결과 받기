@@ -1,0 +1,33 @@
+function splitArray(report, obj){
+    for(let i = 0; i<report.length; i++){
+        const [userId, reportId] = report[i].split(" ");
+        obj[reportId] = []
+    }
+    for(let i = 0; i<report.length; i++){
+        const [userId, reportId] = report[i].split(" ");
+        obj[reportId].push(userId)
+    }
+}
+
+function delOverlap(reports){
+    const set = new Set(reports);
+    return [...set];
+}
+
+
+function solution(id_list, report, k) {
+    const answer = new Array(id_list.length);
+    answer.fill(0);
+    const report_obj = {};
+    const report_list = delOverlap(report)
+    splitArray(report_list, report_obj);
+    
+    for(let i in report_obj){
+        if(report_obj[i].length >= k){
+            for(let j of report_obj[i]){
+                answer[id_list.indexOf(j)] += 1 
+            }
+        }
+    }
+    return answer;
+}
