@@ -1,0 +1,65 @@
+function diffTime(outTime, inTime) {
+    const[outHour, outMinute] = outTime.split(':');
+    const[inHour, inMinute] = inTime.split(":");
+    return (parseInt(outHour) - parseInt(inHour)) * 60 + (parseInt(outMinute) - parseInt(inMinute))
+}
+
+function calcFee(minute, fees){
+    const [basicTime, basicFee, unitTime, unitFee] = fees;
+    if(minute <= parseInt(basicTime)){
+        return basicFee;
+    }else{
+        return basicFee + Math.ceil((minute - basicTime) / unitTime) * unitFee;
+    }
+}
+
+function solution(fees, records) {
+    let answer = []
+    const carObj = {}
+    records = records.map((element) => {
+        return element.split(' ');
+    }).sort((a, b) => {
+        if(a[1] === b[1]){
+            return a[0] - b[0]
+        }
+        return a[1] - b[1];
+    });
+    for(let record of records){
+        const [ time, number, io] = record;
+        if(io === "IN"){
+            if(Object.keys(carObj).includes(number)){
+                carObj[number].inTime = time;
+                carObj[number].outTime = null
+            }else{
+                carObj[number] = {
+                    inTime : time,
+                    outTime : null,
+                    allTime : 0
+                }
+            }
+        }else{
+            carObj[number].outTime = time;
+            const diff = diffTime(time, carObj[number].inTime);
+            carObj[number].allTime += diff;
+        }
+    }
+    
+    Object.keys(carObj).forEach((element) => {
+        if(carObj[element].outTime === null){
+            carObj[element].outTime = "23:59";
+            const diff = diffTime(carObj[element].outTime, carObj[element].inTime);
+            carObj[element].allTime += diff;
+            
+        }
+    })
+    
+    const arr = Object.keys(carObj).sort((a,b) => {
+        return parseInt(a) - parseInt(b);
+    })
+    console.log(arr);
+    for(let i of arr){
+        answer.push(calcFee(carObj[i].allTime, fees));
+    }
+
+    return answer;
+}
