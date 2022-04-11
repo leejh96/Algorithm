@@ -1,0 +1,65 @@
+function checkPoint(point, room){
+    const checkList = [[2, 0],[-2, 0],[0, 2],[0, -2],[0, 1], [0, -1], [1, 0], [-1, 0], [1, 1], [1, -1], [-1, -1], [-1, 1]]
+    for(i of point){
+        const [pointY, pointX] = i;
+        for (let j of checkList){
+            const [x, y] = j;
+            if((pointY + y >= 0 && pointY + y <5) && (pointX + x < 5 && pointX + x >= 0)){
+                if(x === 0 || y === 0){
+                    if(room[pointY + y][pointX + x] === "P"){
+                        if(x === 1 || y === 1){
+                            return 0;                            
+                        }
+                        if(x === 2){
+                            if(room[pointY + y][pointX + x - 1] !== "X"){
+                                return 0
+                            }
+                        }
+                        if(x === -2){
+                            if(room[pointY + y][pointX + x + 1] !== "X"){
+                                return 0
+                            }
+                        }
+                        if(y === 2){
+                            if(room[pointY + y - 1][pointX + x] !== "X"){
+                                return 0
+                            }
+                        }
+                        if(y === -2){
+                            if(room[pointY + y + 1][pointX + x] !== "X"){
+                                return 0
+                            }
+                        }
+                    }
+                }else{
+                    if((room[pointY + y][pointX + x] === "P")){
+                        if(room[pointY + y][pointX] !== "X" || room[pointY][pointX + x] !== "X"){
+                            return 0;
+                        }
+                    }
+                }
+            }    
+        }
+    }
+    return 1;
+}
+
+function locationCandidate(places){
+    const candidate = [];
+    for(let i = 0; i< places.length; i++){
+        for(let j = 0; j<places[i].length; j++){
+            if(places[i][j] === "P"){
+                candidate.push([i, j])
+            }
+        }
+    }
+    return candidate;
+}
+
+function solution(places) {
+    let answer = [];
+    for(let i of places){
+        answer.push(checkPoint(locationCandidate(i), i));
+    }
+    return answer;
+}

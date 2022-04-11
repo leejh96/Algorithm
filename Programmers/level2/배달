@@ -1,0 +1,31 @@
+function solution(N, road, K) {
+    let costs = Array(N+1).fill(Infinity); //최소값을 주기 위해 infinity로 초기화
+    let graph = Array.from(Array(N+1), () => Array()); // 1부터 시작하기 위해서 N+1크기의 배열을 만들고 각 인덱스에는 배열을 생성
+
+    // 각 노드에서 어떤 노드로 뻗어나가는지 배열에 저장
+    // graph 배열의 인덱스가 뻗어나가는 노드를 가리킴, 인덱스가 1일경우 1번 노드
+    for(let [start, end, distance] of road) {
+        //양쪽 모두 오갈 수 있기 때문에 두 번 푸시 
+        graph[start].push({ to: end, distance });
+        graph[end].push({ to: start, distance });
+    }
+    
+    // 모든 노드는 1번에서 시작하기 때문에 check 배열을 생성 후 1번 노드에서 1번으로 가는 distance는 0이기 때문에
+    // distance를 0으로 설정
+    let check = [{ to: 1, distance: 0 }];
+    costs[1] = 0;
+    
+    while(check.length) {
+        let { to, distance } = check.pop();
+        // 체크하고자 하는 노드에서 연결된 다른 확인
+        graph[to].forEach(info => {
+            // info.to: 이동할 마을 / to: 현재 마을 / info.distance: 이동할 마을까지 걸리는 시간
+            if(costs[info.to] > costs[to] + info.distance) { 
+                costs[info.to] = costs[to] + info.distance;
+                check.push(info);
+            }
+        });
+    }
+    
+    return costs.filter((time) => time <= K).length;
+}
